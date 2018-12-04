@@ -1,0 +1,29 @@
+{
+    "name": "daydreamlab/Observer",
+    "description": "DaydreamLab Observer",
+    "authors": [
+        {
+            "name": "Jordan Tsai",
+            "email": "jordan@daydream-lab.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "src/database/seeds"
+        ],
+        "psr-4": {
+            "DaydreamLab\\Observer\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "daydreamlab/jjaj": "dev-master"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DaydreamLab\\User\\UserServiceProvider"
+            ]
+        }
+    }
+}
