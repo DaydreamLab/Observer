@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DaydreamLab\\User\\UserServiceProvider"
+                "DaydreamLab\\Observer\\ObserverServiceProvider"
             ]
         }
     }
