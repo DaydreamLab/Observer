@@ -19,10 +19,11 @@ class Log extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title',
-        'category_id',
-        'state',
-        'description',
+        'action',
+        'type',
+        'result',
+        'item_id',
+        'payload',
         'created_by',
         'updated_by'
     ];
@@ -45,6 +46,8 @@ class Log extends BaseModel
     protected $appends = [
     ];
 
-
+    protected $casts = [
+        'payload'
+    ];
 
 }

@@ -28,60 +28,60 @@ class LogController extends BaseController
     }
 
 
-    public function getItems()
-    {
-        $this->service->search(new Collection());
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
-
-
-    public function getList()
-    {
-        $this->service->getList(new Collection());
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
-
-
-    public function checkout($id)
-    {
-        $this->service->checkout($id);
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
-
-
-    public function ordering(LogOrderingPost $request)
-    {
-        $this->service->ordering($request->rulesInput());
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
+//    public function getItems()
+//    {
+//        $this->service->search(new Collection());
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
+//
+//
+//    public function getList()
+//    {
+//        $this->service->getList(new Collection());
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
+//
+//
+//    public function checkout($id)
+//    {
+//        $this->service->checkout($id);
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
 
 
-    public function remove(LogRemovePost $request)
-    {
-        $this->service->remove($request->rulesInput());
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
-
-
-    public function state(LogStatePost $request)
-    {
-        $this->service->state($request->rulesInput());
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
-
-
-    public function store(LogStorePost $request)
-    {
-        $this->service->store($request->rulesInput());
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
+//    public function ordering(LogOrderingPost $request)
+//    {
+//        $this->service->ordering($request->rulesInput());
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
+//
+//
+//    public function remove(LogRemovePost $request)
+//    {
+//        $this->service->remove($request->rulesInput());
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
+//
+//
+//    public function state(LogStatePost $request)
+//    {
+//        $this->service->state($request->rulesInput());
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
+//
+//
+//    public function store(LogStorePost $request)
+//    {
+//        $this->service->store($request->rulesInput());
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
 
 
     public function search(LogSearchPost $request)

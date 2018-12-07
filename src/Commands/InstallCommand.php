@@ -26,7 +26,7 @@ class InstallCommand extends Command
 
 
     protected $constants = [
-        //'log',
+        'log',
     ];
 
 
@@ -52,7 +52,17 @@ class InstallCommand extends Command
      */
     public function handle()
     {
+        foreach ($this->seeders as $seeder) {
+            $this->call('db:seed', [
+                '--class' => $this->seeder_namespace . $seeder
+            ]);
+        }
+
         $this->deleteConstants();
+
+        $this->call('vendor:publish', [
+            '--tag' => 'observer-configs'
+        ]);
     }
 
 
@@ -61,7 +71,6 @@ class InstallCommand extends Command
         $constants_path     = 'config/constants/';
         foreach ($this->constants as $constant) {
             File::delete($constants_path . $constant . '.php');
-            File::delete(config_path() . '/'. $constant . '.php');
         }
     }
 }

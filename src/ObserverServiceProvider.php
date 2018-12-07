@@ -3,18 +3,15 @@
 namespace DaydreamLab\Observer;
 
 
-use DaydreamLab\JJAJ\Exceptions\BaseExceptionHandler;
-use DaydreamLab\JJAJ\Helpers\Helper;
-use DaydreamLab\Media\Helpers\MediaHelper;
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Debug\ExceptionHandler;
+
 
 class ObserverServiceProvider extends ServiceProvider
 {
 
 
     protected $commands = [
-        'DaydreamLab\Media\Commands\InstallCommand',
+        'DaydreamLab\Observer\Commands\InstallCommand',
     ];
     /**
      * Bootstrap services.
@@ -23,7 +20,9 @@ class ObserverServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        $this->publishes([__DIR__. '/constants' => config_path('constants')], 'observer-configs');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        include __DIR__. '/routes/api.php';
     }
 
     /**
