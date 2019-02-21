@@ -21,7 +21,7 @@
     "repositories" : [
         {
             "type": "vcs",
-            "url":  "https://github.com/DaydreamLab/JJAJ",
+            "url":  "https://github.com/DaydreamLab/JJAJ.git",
             "no-api": true
         }
     ],
