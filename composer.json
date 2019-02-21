@@ -18,6 +18,13 @@
     "require": {
         "daydreamlab/jjaj": "dev-master"
     },
+    "repositories" : [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/DaydreamLab/JJAJ",
+            "no-api": true
+        }
+    ],
     "extra": {
         "laravel": {
             "providers": [
