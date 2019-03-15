@@ -33,5 +33,6 @@ class ObserverServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands($this->commands);
+        $this->app->register(ObserverEventServiceProvider::class);
     }
 }
