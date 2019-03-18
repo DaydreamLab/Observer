@@ -11,4 +11,5 @@ class SearchFrontRepository extends SearchRepository
     {
         parent::__construct($model);
         $this->model = $model;
+    }
 }

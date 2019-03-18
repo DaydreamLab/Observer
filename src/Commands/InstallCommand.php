@@ -27,6 +27,8 @@ class InstallCommand extends Command
 
     protected $constants = [
         'log',
+        'unique',
+        'search'
     ];
 
 

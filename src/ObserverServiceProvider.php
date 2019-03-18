@@ -22,7 +22,7 @@ class ObserverServiceProvider extends ServiceProvider
     {
         $this->publishes([__DIR__. '/constants' => config_path('constants')], 'observer-configs');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        include __DIR__. '/routes/api.php';
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
     }
 
     /**
