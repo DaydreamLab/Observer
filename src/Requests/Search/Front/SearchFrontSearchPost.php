@@ -24,7 +24,7 @@ class SearchFrontSearchPost extends SearchSearchPost
     public function rules()
     {
         $rules = [
-            //
+            'search'    => 'nullable|string'
         ];
         return array_merge($rules, parent::rules());
     }

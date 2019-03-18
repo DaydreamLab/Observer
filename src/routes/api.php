@@ -12,10 +12,25 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => ['api', 'auth:api', 'expired', 'admin'], 'prefix' => 'admin'], function () {
+Route::group(['prefix' => 'api'], function () {
 
+    Route::group(['middleware' => ['api', 'auth:api', 'expired', 'admin'], 'prefix' => 'admin'], function () {
 
-    Route::group(['prefix' => 'log'], function () {
-        Route::post('search', 'DaydreamLab\Observer\Controllers\Log\LogAdminController@search');
+        Route::group(['prefix' => 'log'], function () {
+            Route::post('search', 'DaydreamLab\Observer\Controllers\Log\LogController@search');
+        });
     });
+
+    Route::group(['middleware' => ['api', 'auth:api', 'expired'], 'prefix' => 'search'], function () {
+        Route::post('', 'DaydreamLab\Observer\Controllers\Search\Front\SearchFrontController@search');
+    });
+
 });
+
+
+
+
+
+
+
+
