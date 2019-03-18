@@ -3,9 +3,11 @@
 namespace DaydreamLab\Observer\Controllers\Search\Front;
 
 use DaydreamLab\JJAJ\Controllers\BaseController;
+use DaydreamLab\JJAJ\Helpers\Helper;
 use DaydreamLab\JJAJ\Helpers\ResponseHelper;
-use Illuminate\Support\Collection;
 use DaydreamLab\Observer\Services\Search\Front\SearchFrontService;
+use Illuminate\Support\Collection;
+use DaydreamLab\Observer\Services\Search\SearchService;
 use DaydreamLab\Observer\Requests\Search\Front\SearchFrontRemovePost;
 use DaydreamLab\Observer\Requests\Search\Front\SearchFrontStorePost;
 use DaydreamLab\Observer\Requests\Search\Front\SearchFrontStatePost;
