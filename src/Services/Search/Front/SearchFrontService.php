@@ -35,6 +35,7 @@ class SearchFrontService extends SearchService
         $bbb = $input;
         $tagResult = $this->TagFrontService->search($bbb);
         $itemResult = $this->ItemFrontService->search($aaa);
+        $categoryResult = $this->CategoryFrontService->search($input);
 
         Helper::show($tagResult->toArray());
 
