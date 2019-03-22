@@ -19,7 +19,6 @@ class Search extends BaseModel
 
     protected $name = 'Search';
 
-
     /**
      * The attributes that are mass assignable.
      *

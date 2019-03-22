@@ -6,7 +6,6 @@ use DaydreamLab\Observer\Events\Search;
 use DaydreamLab\JJAJ\Helpers\Helper;
 use DaydreamLab\Observer\Repositories\Search\Front\SearchFrontRepository;
 use DaydreamLab\Observer\Services\Search\SearchService;
-
 use DaydreamLab\Cms\Services\Item\Front\ItemFrontService;
 use DaydreamLab\Cms\Services\Tag\Front\TagFrontService;
 use DaydreamLab\Cms\Services\Category\Front\CategoryFrontService;
@@ -33,43 +32,47 @@ class SearchFrontService extends SearchService
 
     public function search(Collection $input)
     {
-        $real_limit = $input->get('limit') ?: 15;
+        $limit = $input->get('limit') ?: $this->repo->getModel()->getLimit();
 
-        $input->put('limit', 10000);
+        $tagResults = $this->TagFrontService->searchItems(Helper::collect($input->toArray()), false);
 
-        $itemResults = $this->ItemFrontService->search(Helper::collect($input->toArray()));
-        $tagResults = $this->TagFrontService->search(Helper::collect($input->toArray()));
-        $categoryResults = $this->CategoryFrontService->search(Helper::collect($input->toArray()));
-        $combine_items = Collection::make([]);
+        $categoryResults = $this->CategoryFrontService->searchItems(Helper::collect($input->toArray()), false);
 
-        if( count($itemResults->items()) > 0 ){
-            foreach ($itemResults->items() as $item) {
+        $itemResults = $this->ItemFrontService->search(Helper::collect($input->toArray()), false);
+
+
+        $combine_items = collect([]);
+
+        if($tagResults->count()){
+            foreach ($tagResults as $item) {
                 if(!$combine_items->contains('id', $item->id)) {
                     $combine_items->push($item);
                 }
             }
         }
 
-        if( count($tagResults->items()) > 0 ){
-            foreach ($tagResults->items() as $item) {
+        if( $categoryResults->count()){
+            foreach ($categoryResults as $item) {
                 if(!$combine_items->contains('id', $item->id)) {
                     $combine_items->push($item);
                 }
             }
         }
 
-        if( count($categoryResults->items()) > 0 ){
-            foreach ($categoryResults->items() as $item) {
+        if($itemResults->count()){
+            foreach ($itemResults as $item) {
                 if(!$combine_items->contains('id', $item->id)) {
                     $combine_items->push($item);
                 }
             }
         }
+
 
         $this->status   = Str::upper(Str::snake($this->type.'SearchSuccess'));
-        $this->response = $this->repo->paginate($combine_items, (int)$real_limit, '', ['limit' => $real_limit]);
+        $this->response = $this->repo->paginate($combine_items, (int)$limit, 1, []);
         event(new Search($input, $this->user));
 
+        return $this->response;
     }
 
 }
