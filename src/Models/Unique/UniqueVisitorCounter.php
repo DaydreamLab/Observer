@@ -2,7 +2,6 @@
 namespace DaydreamLab\Observer\Models\Unique;
 
 use DaydreamLab\JJAJ\Models\BaseModel;
-use DaydreamLab\JJAJ\Traits\RecordChanger;
 
 class UniqueVisitorCounter extends BaseModel
 {
