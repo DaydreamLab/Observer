@@ -12,5 +12,9 @@ class UniqueVisitorCounterFrontRepository extends UniqueVisitorCounterRepository
         parent::__construct($model);
         $this->model = $model;
     }
+
+    public function getVisitorCounter() {
+        return $this->model->orderBy('id', 'desc')->limit(1)->first();
+    }
     
 }

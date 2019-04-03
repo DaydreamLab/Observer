@@ -3,6 +3,7 @@
 namespace DaydreamLab\Observer\Controllers\Unique\Front;
 
 use DaydreamLab\JJAJ\Controllers\BaseController;
+use DaydreamLab\JJAJ\Helpers\Helper;
 use DaydreamLab\JJAJ\Helpers\ResponseHelper;
 use Illuminate\Support\Collection;
 use DaydreamLab\Observer\Services\Unique\Front\UniqueVisitorCounterFrontService;
@@ -84,6 +85,11 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->search($request->rulesInput());
 
+        return ResponseHelper::response($this->service->status, $this->service->response);
+    }
+
+    public function getVisitorCounter(){
+        $this->service->getVisitorCounter();
         return ResponseHelper::response($this->service->status, $this->service->response);
     }
 }

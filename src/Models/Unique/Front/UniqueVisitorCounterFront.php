@@ -1,7 +1,7 @@
 <?php
 namespace DaydreamLab\Observer\Models\Unique\Front;
 
-use DaydreamLab\Observer\Models\Unique;
+use DaydreamLab\Observer\Models\Unique\UniqueVisitorCounter;
 
 class UniqueVisitorCounterFront extends UniqueVisitorCounter
 {

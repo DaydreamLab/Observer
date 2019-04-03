@@ -22,4 +22,6 @@ Route::group(['middleware' => ['api', 'auth:api', 'expired', 'admin'], 'prefix' 
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
     Route::post('search', 'DaydreamLab\Observer\Controllers\Search\Front\SearchFrontController@search');
+    Route::get('visitorcount', 'DaydreamLab\Observer\Controllers\Unique\Front\UniqueVisitorCounterFrontController@getVisitorCounter');
+    //Route::get('visitorcount', 'DaydreamLab\Observer\Controllers\Unique\UniqueVisitorCounterController@getVisitorCounter');
 });

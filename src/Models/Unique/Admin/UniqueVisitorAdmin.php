@@ -1,7 +1,7 @@
 <?php
 namespace DaydreamLab\Observer\Models\Unique\Admin;
 
-use DaydreamLab\Observer\Models\Unique;
+use DaydreamLab\Observer\Models\Unique\UniqueVisitor;
 
 class UniqueVisitorAdmin extends UniqueVisitor
 {
