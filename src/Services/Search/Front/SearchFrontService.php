@@ -40,7 +40,6 @@ class SearchFrontService extends SearchService
 
         $itemResults = $this->ItemFrontService->search(Helper::collect($input->toArray()), false);
 
-
         $combine_items = collect([]);
 
         if($tagResults->count()){
