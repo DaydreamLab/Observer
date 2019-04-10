@@ -4,6 +4,7 @@ namespace DaydreamLab\Observer\Controllers\Search\Admin;
 
 use DaydreamLab\JJAJ\Controllers\BaseController;
 use DaydreamLab\JJAJ\Helpers\ResponseHelper;
+use DaydreamLab\Observer\Requests\Search\Admin\SearchAdminKeywordListPost;
 use Illuminate\Support\Collection;
 use DaydreamLab\Observer\Services\Search\Admin\SearchAdminService;
 use DaydreamLab\Observer\Requests\Search\Admin\SearchAdminRemovePost;
@@ -89,6 +90,13 @@ class SearchAdminController extends BaseController
     {
         $this->service->search($request->rulesInput());
 
+        return ResponseHelper::response($this->service->status, $this->service->response);
+    }
+
+    public function keywordList(SearchAdminKeywordListPost $request)
+    {
+        $this->service->keywordList($request->rulesInput());
+        
         return ResponseHelper::response($this->service->status, $this->service->response);
     }
 }
