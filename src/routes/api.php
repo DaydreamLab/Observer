@@ -17,7 +17,11 @@ Route::group(['middleware' => ['api', 'auth:api', 'expired', 'admin'], 'prefix' 
     Route::group(['prefix' => 'log'], function () {
         Route::post('search', 'DaydreamLab\Observer\Controllers\Log\LogController@search');
     });
-    Route::post('keywordlist', 'DaydreamLab\Observer\Controllers\Search\Admin\SearchAdminController@keywordList');
+
+    Route::group(['prefix' => 'search'], function () {
+        Route::post('keywordlist', 'DaydreamLab\Observer\Controllers\Search\Admin\SearchAdminController@keywordList');
+    });
+
 });
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
