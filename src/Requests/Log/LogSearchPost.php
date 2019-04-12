@@ -21,12 +21,10 @@ class LogSearchPost extends ListRequest
     public function rules()
     {
         $rules = [
-            'title' => 'nullable|string',
-            'state'     => [
-                'nullable',
-                'integer',
-                Rule::in([0,1,-2])
-            ]
+            'search'     => 'nullable|string',
+            'start_date' => 'nullable|string',
+            'end_date'   => 'nullable|string',
+            'action'     => 'nullable|string'
         ];
 
         return array_merge(parent::rules(), $rules);

@@ -27,6 +27,13 @@ class LogController extends BaseController
         return ResponseHelper::response($this->service->status, $this->service->response);
     }
 
+    public function search(LogSearchPost $request)
+    {
+        $this->service->search($request->rulesInput());
+
+        return ResponseHelper::response($this->service->status, $this->service->response);
+    }
+
 
 //    public function getItems()
 //    {
@@ -47,6 +54,13 @@ class LogController extends BaseController
 //    public function checkout($id)
 //    {
 //        $this->service->checkout($id);
+//
+//        return ResponseHelper::response($this->service->status, $this->service->response);
+//    }
+
+//    public function getList()
+//    {
+//        $this->service->getList(new Collection());
 //
 //        return ResponseHelper::response($this->service->status, $this->service->response);
 //    }
@@ -83,11 +97,4 @@ class LogController extends BaseController
 //        return ResponseHelper::response($this->service->status, $this->service->response);
 //    }
 
-
-    public function search(LogSearchPost $request)
-    {
-        $this->service->search($request->rulesInput());
-
-        return ResponseHelper::response($this->service->status, $this->service->response);
-    }
 }
