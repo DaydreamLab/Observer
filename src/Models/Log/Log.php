@@ -44,6 +44,7 @@ class Log extends BaseModel
      * @var array
      */
     protected $appends = [
+        'creator'
     ];
 
     protected $casts = [
