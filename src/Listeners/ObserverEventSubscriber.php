@@ -65,11 +65,8 @@ class ObserverEventSubscriber
             'DaydreamLab\Observer\Listeners\ObserverEventSubscriber@onRequest'
         );
 
-        $events->listen(
-            'DaydreamLab\Cms\Events\Search',
+        $events->listen('DaydreamLab\Observer\Events\Search',
             'DaydreamLab\Observer\Listeners\ObserverEventSubscriber@onSearch'
         );
-
-        $events->listen('DaydreamLab\Observer\Events\Search', 'DaydreamLab\Observer\Listeners\ObserverEventSubscriber@onSearch');
     }
 }
