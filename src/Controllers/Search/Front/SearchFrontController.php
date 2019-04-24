@@ -90,7 +90,10 @@ class SearchFrontController extends BaseController
 
     public function search(SearchFrontSearchPost $request)
     {
-        $this->service->search($request->rulesInput());
+        $input = $request->rulesInput();
+        $input->put('page', $request->get('page'));
+
+        $this->service->search($input);
 
         return ResponseHelper::response($this->service->status, $this->service->response);
     }
