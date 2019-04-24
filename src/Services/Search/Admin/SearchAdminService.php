@@ -22,6 +22,7 @@ class SearchAdminService extends SearchService
     {
         $limit = $input->get('limit') ?: $this->repo->getModel()->getLimit();
         $page = $input->get('page');
+        $input->forget('page');
 
         $keyword_data = $this->repo->keywordList($input);
 
