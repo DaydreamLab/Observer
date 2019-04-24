@@ -21,12 +21,13 @@ class SearchAdminService extends SearchService
     public function keywordList(Collection $input)
     {
         $limit = $input->get('limit') ?: $this->repo->getModel()->getLimit();
+        $page = $input->get('page');
 
         $keyword_data = $this->repo->keywordList($input);
 
         if( gettype($keyword_data) == 'object' ){
             $this->status   = Str::upper(Str::snake($this->type.'GetListSuccess'));
-            $this->response = $this->repo->paginate($keyword_data, (int)$limit, 1, []);
+            $this->response = $this->repo->paginate($keyword_data, (int)$limit, (int)$page , []);
         }else{
             $this->status   = Str::upper(Str::snake($this->type.'GetListFail'));
             $this->response = [];

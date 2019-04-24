@@ -88,7 +88,10 @@ class SearchAdminController extends BaseController
 
     public function search(SearchAdminSearchPost $request)
     {
-        $this->service->search($request->rulesInput());
+        $input = $request->rulesInput();
+        $input->put('page', $request->has('page') ? $request->get('page') : 1);
+
+        $this->service->search($input);
 
         return ResponseHelper::response($this->service->status, $this->service->response);
     }
