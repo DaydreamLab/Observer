@@ -33,6 +33,8 @@ class SearchFrontService extends SearchService
     public function search(Collection $input)
     {
         $limit = $input->get('limit') ?: $this->repo->getModel()->getLimit();
+        $page  = $input->has('page') ? (int) $input->get('page') : 1;
+        $input->forget('page');
 
         $tagResults = $this->TagFrontService->searchItems(Helper::collect($input->toArray()), false);
 
@@ -68,7 +70,7 @@ class SearchFrontService extends SearchService
 
 
         $this->status   = Str::upper(Str::snake($this->type.'SearchSuccess'));
-        $this->response = $this->repo->paginate($combine_items, (int)$limit, 1, []);
+        $this->response = $this->repo->paginate($combine_items, (int)$limit, $page, []);
         event(new Search($input, $this->user));
 
         return $this->response;
