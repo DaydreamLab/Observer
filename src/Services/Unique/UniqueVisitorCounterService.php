@@ -27,54 +27,54 @@ class UniqueVisitorCounterService extends BaseService
     }
 
 
-    public function checkout(Collection $input)
-    {
-        $result = parent::checkout($input);
-
-        //event(new Checkout($this->model_name, $result, $input, $this->user));
-
-        return $result;
-    }
-
-
-    public function modify(Collection $input)
-    {
-        $result =  parent::modify($input);
-
-        //event(new Modify($this->find($input->id), $this->model_name, $result, $input, $this->user));
-
-        return $result;
-    }
+//    public function checkout(Collection $input)
+//    {
+//        $result = parent::checkout($input);
+//
+//        //event(new Checkout($this->model_name, $result, $input, $this->user));
+//
+//        return $result;
+//    }
 
 
-    public function ordering(Collection $input, $orderingKey = 'ordering')
-    {
-        $result = parent::ordering($input, $orderingKey);
-
-        //event(new Ordering($this->model_name, $result, $input, $orderingKey, $this->user));
-
-        return $result;
-    }
-
-
-    public function remove(Collection $input)
-    {
-        $result =  parent::remove($input);
-
-        //event(new Remove($this->model_name, $result, $input, $this->user));
-
-        return $result;
-    }
+//    public function modify(Collection $input)
+//    {
+//        $result =  parent::modify($input);
+//
+//        //event(new Modify($this->find($input->id), $this->model_name, $result, $input, $this->user));
+//
+//        return $result;
+//    }
 
 
-    public function state(Collection $input)
-    {
-        $result = parent::state($input);
+//    public function ordering(Collection $input, $orderingKey = 'ordering')
+//    {
+//        $result = parent::ordering($input, $orderingKey);
+//
+//        //event(new Ordering($this->model_name, $result, $input, $orderingKey, $this->user));
+//
+//        return $result;
+//    }
 
-        //event(new State($this->model_name, $result, $input, $this->user));
 
-        return $result;
-    }
+//    public function remove(Collection $input)
+//    {
+//        $result =  parent::remove($input);
+//
+//        //event(new Remove($this->model_name, $result, $input, $this->user));
+//
+//        return $result;
+//    }
+
+
+//    public function state(Collection $input)
+//    {
+//        $result = parent::state($input);
+//
+//        //event(new State($this->model_name, $result, $input, $this->user));
+//
+//        return $result;
+//    }
 
 
     public function updateCounter()

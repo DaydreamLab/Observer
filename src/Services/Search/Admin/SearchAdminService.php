@@ -20,6 +20,8 @@ class SearchAdminService extends SearchService
 
     public function keywordList(Collection $input)
     {
+        $this->canAction('keywordList');
+
         $limit = $input->get('limit') ?: $this->repo->getModel()->getLimit();
         $page = $input->get('page');
         $input->forget('page');

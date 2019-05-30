@@ -20,6 +20,8 @@ class LogService extends BaseService
 
     public function search(Collection $input)
     {
+        $this->canAction('search');
+
         $start_time = $input->get('start_date');
         $end_time = $input->get('end_date');
         $input->forget('start_date');
