@@ -18,7 +18,7 @@ class UniqueVisitorCounterFrontService extends UniqueVisitorCounterService
     }
 
     public function getVisitorCounter(){
-        //11111111
+
         $counter_data = $this->repo->getVisitorCounter();
         if( gettype($counter_data) == 'object' ){
             $this->status   = Str::upper(Str::snake($this->type.'GetItemSuccess'));
@@ -27,7 +27,6 @@ class UniqueVisitorCounterFrontService extends UniqueVisitorCounterService
             $this->status   = Str::upper(Str::snake($this->type.'GetItemFail'));
             $this->response = [];
         }
-
     }
     
 }
