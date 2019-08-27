@@ -28,17 +28,18 @@ class ObserverEventSubscriber
 
     public function onRequest($event)
     {
-        $input = Helper::collect([
-            'ip' => $event->request->ip(),
-            'ua' => $event->request->header('User-Agent')
-        ]);
+        if (config('daydreamlab-observer.record_unique_visitors')) {
+            $input = Helper::collect([
+                'ip' => $event->request->ip(),
+                'ua' => $event->request->header('User-Agent')
+            ]);
 
-        if (!$this->uniqueVisitorService->alreadyVisited($input))
-        {
-            $uv = $this->uniqueVisitorService->store($input);
-            $uvc = $this->uniqueVisitorCounterService->updateCounter();
+            if (!$this->uniqueVisitorService->alreadyVisited($input)) {
+                $uv = $this->uniqueVisitorService->store($input);
+                $uvc = $this->uniqueVisitorCounterService->updateCounter();
 
-            return $uv && $uvc;
+                return $uv && $uvc;
+            }
         }
 
         return true;
@@ -47,11 +48,12 @@ class ObserverEventSubscriber
 
     public function onSearch($event)
     {
-        if (!InputHelper::null($event->input, 'search'))
-        {
-            return  $this->searchService->store(Helper::collect([
-                'keyword'   => $event->input->search
-            ]));
+        if (config('daydreamlab-observer.record_global_search')) {
+            if (!InputHelper::null($event->input, 'search')) {
+                return $this->searchService->store(Helper::collect([
+                    'keyword' => $event->input->search
+                ]));
+            }
         }
 
         return true;
