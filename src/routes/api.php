@@ -13,19 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => ['api', 'auth:api', 'expired', 'admin'], 'prefix' => 'api/admin'], function () {
-    Route::group(['prefix' => 'log'], function () {
-        Route::post('search', 'DaydreamLab\Observer\Controllers\Log\LogController@search');
-        //Route::get('{id}', 'DaydreamLab\Observer\Controllers\Log\LogController@getItem');
-    });
+/************************************  前台 API  ************************************/
+Route::post('api/search', 'DaydreamLab\Observer\Controllers\Search\Front\SearchFrontController@search');
+Route::get('api/visitorcounter', 'DaydreamLab\Observer\Controllers\Unique\Front\UniqueVisitorCounterFrontController@getVisitorCounter');
 
-    Route::group(['prefix' => 'search'], function () {
-        Route::post('keywordlist', 'DaydreamLab\Observer\Controllers\Search\Admin\SearchAdminController@keywordList');
-    });
 
-});
 
-Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
-    Route::post('search', 'DaydreamLab\Observer\Controllers\Search\Front\SearchFrontController@search');
-    Route::get('visitorcounter', 'DaydreamLab\Observer\Controllers\Unique\Front\UniqueVisitorCounterFrontController@getVisitorCounter');
-});
+/************************************  後台 API  ************************************/
+Route::post('api/admin/log/search', 'DaydreamLab\Observer\Controllers\Log\LogController@search')
+    ->middleware(['expired', 'admin']);
+
+Route::post('api/admin/search/keywordlist', 'DaydreamLab\Observer\Controllers\Search\Admin\SearchAdminController@keywordList')
+    ->middleware(['expired', 'admin']);
+
+
+
+
