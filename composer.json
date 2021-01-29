@@ -16,7 +16,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "daydreamlab/jjaj": "master
+        "daydreamlab/jjaj": "master"
     },
     "repositories" : [
         {
