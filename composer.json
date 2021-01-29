@@ -21,6 +21,10 @@
     "repositories" : [
         {
             "type": "vcs",
+            "url":  "https://github.com/DaydreamLab/Observer.git"
+        },
+        {
+            "type": "vcs",
             "url":  "https://github.com/DaydreamLab/JJAJ.git"
         }
     ],
