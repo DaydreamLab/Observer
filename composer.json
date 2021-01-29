@@ -16,12 +16,16 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "daydreamlab/jjaj": "master"
+        "daydreamlab/jjaj": "dev-master"
     },
     "repositories" : [
         {
             "type": "vcs",
             "url":  "https://github.com/DaydreamLab/JJAJ.git"
+        },
+        {
+            "type": "vcs",
+            "url":  "https://github.com/DaydreamLab/Observer.git"
         }
     ],
     "extra": {
