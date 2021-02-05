@@ -4,11 +4,7 @@ namespace DaydreamLab\Observer\Controllers\Search\Front;
 
 use DaydreamLab\JJAJ\Controllers\BaseController;
 use DaydreamLab\JJAJ\Helpers\Helper;
-use DaydreamLab\JJAJ\Helpers\ResponseHelper;
 use DaydreamLab\Observer\Services\Search\Front\SearchFrontService;
-use Illuminate\Support\Collection;
-use DaydreamLab\Observer\Services\Search\SearchService;
-use DaydreamLab\Observer\Requests\Search\Front\SearchFrontStorePost;
 use DaydreamLab\Observer\Requests\Search\Front\SearchFrontSearchPost;
 
 
@@ -25,7 +21,7 @@ class SearchFrontController extends BaseController
     {
         $this->service->getItem($id);
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -36,6 +32,6 @@ class SearchFrontController extends BaseController
 
         $this->service->search($input);
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 }
