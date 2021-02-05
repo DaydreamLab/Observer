@@ -16,7 +16,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "daydreamlab/user": "dev-base/develop",
+        "daydreamlab/user": "dev-base/develop"
     },
     "repositories" : [
         {

@@ -22,7 +22,8 @@ class LogAdminResource extends JsonResource
             'item_id'       => $this->item_id,
             'payload'       => $this->payload,
             'created_at'    => $this->created_at,
-            'updated_at'    => $this->updated_at
+            'updated_at'    => $this->updated_at,
+            'creator'       => $this->creator
         ];
     }
 }

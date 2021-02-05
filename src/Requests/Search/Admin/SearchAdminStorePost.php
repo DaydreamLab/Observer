@@ -2,9 +2,9 @@
 
 namespace DaydreamLab\Observer\Requests\Search\Admin;
 
-use DaydreamLab\Observer\Requests\Search\SearchStorePost;
+use DaydreamLab\JJAJ\Requests\AdminRequest;
 
-class SearchAdminStorePost extends SearchStorePost
+class SearchAdminStorePost extends AdminRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,15 @@ class SearchAdminStorePost extends SearchStorePost
     public function rules()
     {
         $rules = [
-            //
+            'id'            => 'nullable|integer',
+            'title'         => 'required|string',
+            'state'         => [
+                'nullable',
+                'integer',
+                Rule::in([0,1,-2])
+            ],
+            'description'   => 'nullable|string',
         ];
-        return array_merge($rules, parent::rules());
+        return array_merge(parent::rules(), $rules);
     }
 }

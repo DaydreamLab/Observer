@@ -2,9 +2,9 @@
 
 namespace DaydreamLab\Observer\Requests\Search\Front;
 
-use DaydreamLab\Observer\Requests\Search\SearchSearchPost;
+use DaydreamLab\JJAJ\Requests\ListRequest;
 
-class SearchFrontSearchPost extends SearchSearchPost
+class SearchFrontSearchPost extends ListRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,13 @@ class SearchFrontSearchPost extends SearchSearchPost
     public function rules()
     {
         $rules = [
-            'search'    => 'nullable|string'
+            'title'     => 'nullable|string',
+            'state'     => [
+                'nullable',
+                'integer',
+                Rule::in([0,1,-2])
+            ]
         ];
-        return array_merge($rules, parent::rules());
+        return array_merge(parent::rules(), $rules);
     }
 }

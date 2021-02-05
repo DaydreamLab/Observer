@@ -2,9 +2,9 @@
 
 namespace DaydreamLab\Observer\Requests\Search\Admin;
 
-use DaydreamLab\Observer\Requests\Search\SearchRemovePost;
+use DaydreamLab\JJAJ\Requests\AdminRequest;
 
-class SearchAdminRemovePost extends SearchRemovePost
+class SearchAdminRemovePost extends AdminRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class SearchAdminRemovePost extends SearchRemovePost
     public function rules()
     {
         $rules = [
-            //
+            'ids'       => 'required|array',
+            'ids.*'     => 'required|integer'
         ];
-        return array_merge($rules, parent::rules());
+        return array_merge(parent::rules(), $rules);
     }
 }

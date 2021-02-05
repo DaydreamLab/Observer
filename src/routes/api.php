@@ -16,12 +16,8 @@ use DaydreamLab\Observer\Controllers\Log\Admin\LogAdminController;
 Route::post('api/admin/log/search', [LogAdminController::class, 'search'])
     ->middleware(['expired', 'admin']);
 
-//Route::group(['middleware' => ['api', 'auth:api', 'expired', 'admin'], 'prefix' => 'api/admin'], function () {
-//    Route::group(['prefix' => 'log'], function () {
-//        Route::post('search', 'DaydreamLab\Observer\Controllers\Log\LogController@search');
-//        //Route::get('{id}', 'DaydreamLab\Observer\Controllers\Log\LogController@getItem');
-//    });
-//
+
+
 //    Route::group(['prefix' => 'search'], function () {
 //        Route::post('keywordlist', 'DaydreamLab\Observer\Controllers\Search\Admin\SearchAdminController@keywordList');
 //    });
