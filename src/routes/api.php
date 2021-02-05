@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use DaydreamLab\Observer\Controllers\Log\Admin\LogAdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('api/admin/log/search', [LogAdminController::class, 'search'])
+    ->middleware(['expired', 'admin']);
 
 //Route::group(['middleware' => ['api', 'auth:api', 'expired', 'admin'], 'prefix' => 'api/admin'], function () {
 //    Route::group(['prefix' => 'log'], function () {

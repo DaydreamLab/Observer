@@ -7,6 +7,9 @@ use Illuminate\Validation\Rule;
 
 class LogSearchPost extends ListRequest
 {
+    protected $apiMethod = 'searchLog';
+
+    protected $modelName = 'Log';
 
     public function authorize()
     {

@@ -2,6 +2,7 @@
 namespace DaydreamLab\Observer\Models\Log;
 
 use DaydreamLab\JJAJ\Models\BaseModel;
+use DaydreamLab\User\Models\User\User;
 
 class Log extends BaseModel
 {
@@ -50,5 +51,17 @@ class Log extends BaseModel
     protected $casts = [
         'payload'
     ];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function getCreatorAttribute()
+    {
+        $creator = $this->creator()->first();
+
+        return $creator ? $creator->nickname : null;
+    }
 
 }

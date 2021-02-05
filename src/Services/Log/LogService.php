@@ -8,9 +8,12 @@ use DaydreamLab\JJAJ\Services\BaseService;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use DaydreamLab\JJAJ\Traits\LoggedIn;
 
 class LogService extends BaseService
 {
+    use LoggedIn;
+
     protected $type = 'Log';
 
     public function __construct(LogRepository $repo)
@@ -20,7 +23,6 @@ class LogService extends BaseService
 
     public function search(Collection $input)
     {
-        $this->canAction('search');
 
         $start_time = $input->get('start_date');
         $end_time = $input->get('end_date');
@@ -50,7 +52,7 @@ class LogService extends BaseService
 
         $data = parent::search($input);
 
-        $this->status   = Str::upper(Str::snake($this->type.'SearchSuccess'));
+        $this->status   = 'SearchSuccess';
         $this->response = $data;
 
         return $data;
