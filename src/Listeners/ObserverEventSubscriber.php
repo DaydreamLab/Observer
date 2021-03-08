@@ -28,7 +28,7 @@ class ObserverEventSubscriber
 
     public function onRequest($event)
     {
-        if (config('daydreamlab-observer.record_unique_visitors')) {
+        if (config('daydreamlab.observer.record_unique_visitors')) {
             $input = Helper::collect([
                 'ip' => $event->request->ip(),
                 'ua' => $event->request->header('User-Agent')
@@ -48,7 +48,7 @@ class ObserverEventSubscriber
 
     public function onSearch($event)
     {
-        if (config('daydreamlab-observer.record_global_search')) {
+        if (config('daydreamlab.observer.record_global_search')) {
             if (!InputHelper::null($event->input, 'search')) {
                 return $this->searchService->store(Helper::collect([
                     'keyword' => $event->input->search
