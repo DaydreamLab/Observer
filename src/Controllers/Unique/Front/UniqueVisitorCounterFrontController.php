@@ -7,6 +7,7 @@ use DaydreamLab\JJAJ\Helpers\Helper;
 use DaydreamLab\JJAJ\Helpers\ResponseHelper;
 use Illuminate\Support\Collection;
 use DaydreamLab\Observer\Services\Unique\Front\UniqueVisitorCounterFrontService;
+use DaydreamLab\Observer\Resources\UniqueVisitor\Front\Models\UniqueVistorCounterFrontResource;
 
 class UniqueVisitorCounterFrontController extends BaseController
 {
@@ -21,7 +22,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->getItem($id);
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -29,7 +30,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->search(new Collection());
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -37,7 +38,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->getList(new Collection());
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -45,7 +46,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->checkout($id);
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -53,7 +54,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->ordering($request->rulesInput());
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -61,7 +62,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->remove($request->rulesInput());
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -69,7 +70,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->state($request->rulesInput());
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -77,7 +78,7 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->store($request->rulesInput());
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
 
@@ -85,11 +86,12 @@ class UniqueVisitorCounterFrontController extends BaseController
     {
         $this->service->search($request->rulesInput());
 
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, $this->service->response);
     }
 
-    public function getVisitorCounter(){
+    public function getVisitorCounter()
+    {
         $this->service->getVisitorCounter();
-        return ResponseHelper::response($this->service->status, $this->service->response);
+        return $this->response($this->service->status, new UniqueVistorCounterFrontResource($this->service->response));
     }
 }

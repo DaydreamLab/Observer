@@ -17,14 +17,14 @@ class UniqueVisitorCounterFrontService extends UniqueVisitorCounterService
         $this->repo = $repo;
     }
 
-    public function getVisitorCounter(){
-
+    public function getVisitorCounter()
+    {
         $counter_data = $this->repo->getVisitorCounter();
         if( gettype($counter_data) == 'object' ){
-            $this->status   = Str::upper(Str::snake($this->type.'GetItemSuccess'));
-            $this->response = ['counter' => $counter_data->sum];
+            $this->status   = 'GetItemSuccess';
+            $this->response = $counter_data;
         }else{
-            $this->status   = Str::upper(Str::snake($this->type.'GetItemFail'));
+            $this->status   = 'GetItemFail';
             $this->response = [];
         }
     }

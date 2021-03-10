@@ -17,7 +17,7 @@ use DaydreamLab\Observer\Controllers\Unique\Front\UniqueVisitorCounterFrontContr
 Route::post('api/admin/log/search', [LogAdminController::class, 'search'])
     ->middleware(['expired', 'admin']);
 
-Route::get('visitorcounter', [UniqueVisitorCounterFrontController::class, 'getVisitorCounter']);
+Route::get('api/visitorcounter', [UniqueVisitorCounterFrontController::class, 'getVisitorCounter']);
 
 //    Route::group(['prefix' => 'search'], function () {
 //        Route::post('keywordlist', 'DaydreamLab\Observer\Controllers\Search\Admin\SearchAdminController@keywordList');
