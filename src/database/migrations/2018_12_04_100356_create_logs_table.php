@@ -20,7 +20,7 @@ class CreateLogsTable extends Migration
             $table->string('result');
             $table->string('type')->nullable();
             $table->unsignedInteger('item_id')->nullable();
-            $table->text('payload')->nullable();
+            $table->mediumText('payload')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
             $table->timestamps();
         });
