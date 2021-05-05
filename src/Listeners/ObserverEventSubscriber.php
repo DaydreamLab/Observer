@@ -31,7 +31,7 @@ class ObserverEventSubscriber
         if (config('daydreamlab.observer.record_unique_visitors')) {
             $input = Helper::collect([
                 'ip' => $event->request->ip(),
-                'ua' => $event->request->header('User-Agent')
+                'ua' => ($event->request->header('User-Agent') == null) ? '' : $event->request->header('User-Agent')
             ]);
 
             if (!$this->uniqueVisitorService->alreadyVisited($input)) {
