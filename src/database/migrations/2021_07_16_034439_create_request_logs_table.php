@@ -17,7 +17,7 @@ class CreateRequestLogsTable extends Migration
             $table->bigIncrements('id');
             $table->string('uri');
             $table->string('method');
-            $table->string('controllerMethod');
+            $table->string('controllerMethod')->nullable();
             $table->text('middleware');
             $table->text('headers');
             $table->text('payload');
