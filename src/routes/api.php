@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
-use DaydreamLab\Observer\Controllers\Log\Admin\LogAdminController;
+use DaydreamLab\Observer\Controllers\RequestLog\Admin\RequestLogAdminController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,18 +13,5 @@ use DaydreamLab\Observer\Controllers\Log\Admin\LogAdminController;
 |
 */
 
-Route::post('api/admin/log/search', [LogAdminController::class, 'search'])
-    ->middleware(['expired', 'admin']);
-
-
-
-//    Route::group(['prefix' => 'search'], function () {
-//        Route::post('keywordlist', 'DaydreamLab\Observer\Controllers\Search\Admin\SearchAdminController@keywordList');
-//    });
-//
-//});
-//
-//Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
-//    Route::post('search', 'DaydreamLab\Observer\Controllers\Search\Front\SearchFrontController@search');
-//    Route::get('visitorcounter', 'DaydreamLab\Observer\Controllers\Unique\Front\UniqueVisitorCounterFrontController@getVisitorCounter');
-//});
+Route::post('api/admin/request/log/search', [RequestLogAdminController::class, 'search'])->middleware(['expired', 'admin']);
+Route::get('api/admin/request/log/{id}}', [RequestLogAdminController::class, 'getItem'])->middleware(['expired', 'admin']);

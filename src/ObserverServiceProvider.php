@@ -2,9 +2,7 @@
 
 namespace DaydreamLab\Observer;
 
-
 use Illuminate\Support\ServiceProvider;
-
 
 class ObserverServiceProvider extends ServiceProvider
 {

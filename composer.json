@@ -16,16 +16,11 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "daydreamlab/user": "dev-base/develop"
     },
     "repositories" : [
         {
             "type": "vcs",
             "url":  "https://github.com/DaydreamLab/Observer.git"
-        },
-        {
-            "type": "vcs",
-            "url":  "https://github.com/DaydreamLab/user.git"
         }
     ],
     "extra": {
