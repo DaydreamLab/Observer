@@ -20,7 +20,7 @@ class CreateRequestLogsTable extends Migration
             $table->string('controllerMethod')->nullable();
             $table->text('middleware');
             $table->text('headers');
-            $table->text('payload');
+            $table->mediumText('payload');
             $table->unsignedInteger('responseCode');
             $table->text('response');
             $table->unsignedBigInteger('duration');
