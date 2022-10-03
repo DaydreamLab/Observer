@@ -54,7 +54,7 @@ class ObserverEventSubscriber
 
         $uri = str_replace($request->root(), '', $request->fullUrl()) ?: '/';
 
-        if (in_array($uri, config('daydreamlab.observer.ignoreUri'))) {
+        if (in_array($uri, config('daydreamlab.observer.ignore_uri')  ?: [])) {
             return ;
         }
 
