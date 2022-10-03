@@ -52,10 +52,16 @@ class ObserverEventSubscriber
         $startTime = defined('LARAVEL_START') ? LARAVEL_START : $event->request->server('REQUEST_TIME_FLOAT');
         $user = $request->user('api');
 
+        $uri = str_replace($request->root(), '', $request->fullUrl()) ?: '/';
+
+        if (in_array($uri, config('daydreamlab.observer.ignoreUri'))) {
+            return ;
+        }
+
         RequestLog::create([
-            'uri' => str_replace($request->root(), '', $request->fullUrl()) ?: '/',
+            'uri' => $uri,
             'method' => $request->method(),
-            'controllerMethod'=> optional($event->request->route())->getActionName(),
+            'controllerMethod' => optional($event->request->route())->getActionName(),
             'middleware' => array_values(optional($request->route())->gatherMiddleware() ?? []),
             'headers' => $this->headers($request->headers->all()),
             'payload' => $this->payload($this->input($event->request)),
@@ -63,9 +69,7 @@ class ObserverEventSubscriber
             'response' => $this->response($response),
             'duration' => $startTime ? floor((microtime(true) - $startTime) * 1000) : null,
             'memory' => round(memory_get_peak_usage(true) / 1024 / 1024, 1),
-            'ip' =>  isset($_SERVER['HTTP_CF_CONNECTING_IP'])
-                ? $_SERVER['HTTP_CF_CONNECTING_IP']
-                : $request->ip(),
+            'ip' => $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $request->ip(),
             'created_by' => $user ? $user->id : null,
         ]);
     }
@@ -100,7 +104,7 @@ class ObserverEventSubscriber
         array_walk_recursive($files, function (&$file) {
             $file = [
                 'name' => $file->getClientOriginalName(),
-                'size' => $file->isFile() ? ($file->getSize() / 1000).'KB' : '0',
+                'size' => $file->isFile() ? ($file->getSize() / 1000) . 'KB' : '0',
             ];
         });
 
@@ -119,8 +123,10 @@ class ObserverEventSubscriber
         $content = $response->getContent();
 
         if (is_string($content)) {
-            if (is_array(json_decode($content, true)) &&
-                json_last_error() === JSON_ERROR_NONE) {
+            if (
+                is_array(json_decode($content, true)) &&
+                json_last_error() === JSON_ERROR_NONE
+            ) {
                 return $this->contentWithinLimits($content)
                     ? $this->hideParameters(json_decode($content, true), self::$hiddenResponseParameters)
                     : 'Purged By Telescope';
@@ -132,7 +138,7 @@ class ObserverEventSubscriber
         }
 
         if ($response instanceof RedirectResponse) {
-            return 'Redirected to '.$response->getTargetUrl();
+            return 'Redirected to ' . $response->getTargetUrl();
         }
 
         return 'HTML Response';
@@ -143,7 +149,6 @@ class ObserverEventSubscriber
     public function subscribe($events)
     {
         $events->listen(
-
             RequestHandled::class,
             'DaydreamLab\Observer\Listeners\ObserverEventSubscriber@onRequest'
         );
