@@ -6,8 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class ObserverServiceProvider extends ServiceProvider
 {
-
-
     protected $commands = [
         'DaydreamLab\Observer\Commands\InstallCommand',
     ];
@@ -18,10 +16,10 @@ class ObserverServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__. '/Configs' => config_path()], 'observer-configs');
-        $this->publishes([__DIR__. '/constants' => config_path('constants')], 'observer-configs');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+        $this->publishes([__DIR__ . '/Configs' => config_path()], 'observer-configs');
+        $this->publishes([__DIR__ . '/constants' => config_path('constants')], 'observer-configs');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
     }
 
     /**
