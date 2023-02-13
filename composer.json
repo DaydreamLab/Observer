@@ -16,7 +16,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "daydreamlab/jjaj": "dev-develop-tusa"
+        "daydreamlab/jjaj": "dev-tusa/main"
     },
     "repositories" : [
         {
