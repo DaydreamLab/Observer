@@ -1,4 +1,5 @@
 <?php
+
 namespace DaydreamLab\Observer\Models\Log;
 
 use DaydreamLab\JJAJ\Models\BaseModel;
@@ -44,7 +45,7 @@ class Log extends BaseModel
      * @var array
      */
     protected $appends = [
-        'creator'
+//        'creator'
     ];
 
     protected $casts = [
