@@ -20,7 +20,7 @@ class ObserverEventSubscriber
     public static $hiddenRequestParameters = [
         'password',
         'password_confirmation',
-
+        'passwordConfirm',
     ];
 
     public static $hiddenResponseParameters = [
