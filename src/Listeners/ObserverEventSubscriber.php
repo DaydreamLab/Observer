@@ -61,7 +61,6 @@ class ObserverEventSubscriber
             return ;
         }
 
-        Log::info($_SERVER[config('daydreamlab.observer.cdn_ip')]);
         RequestLog::create([
             'uri' => $uri,
             'method' => $request->method(),
