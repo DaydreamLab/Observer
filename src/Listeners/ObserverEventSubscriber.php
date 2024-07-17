@@ -61,8 +61,6 @@ class ObserverEventSubscriber
             return ;
         }
 
-        Log::info(config('daydreamlab.observer.cdn_ip'));
-
         RequestLog::create([
             'uri' => $uri,
             'method' => $request->method(),
@@ -74,7 +72,7 @@ class ObserverEventSubscriber
             'response' => $this->response($response),
             'duration' => $startTime ? floor((microtime(true) - $startTime) * 1000) : null,
             'memory' => round(memory_get_peak_usage(true) / 1024 / 1024, 1),
-            'ip' =>  $_SERVER[config('app.daydreamlab.cdn_ip')] ?? $request->ip(),
+            'ip' =>  $_SERVER[config('daydreamlab.observer.cdn_ip')] ?? $request->ip(),
             'created_by' => $user ? $user->id : null,
         ]);
     }
