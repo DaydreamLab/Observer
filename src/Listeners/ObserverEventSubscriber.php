@@ -6,6 +6,7 @@ use DaydreamLab\Observer\Models\RequestLog\RequestLog;
 use Illuminate\Foundation\Http\Events\RequestHandled;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,6 +60,8 @@ class ObserverEventSubscriber
         if (in_array($uri, config('daydreamlab.observer.ignore_uri')  ?: [])) {
             return ;
         }
+
+        Log::info(config('daydreamlab.observer.cdn_ip'));
 
         RequestLog::create([
             'uri' => $uri,
