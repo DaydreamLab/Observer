@@ -25,6 +25,7 @@ class Log extends BaseModel
         'result',
         'item_id',
         'payload',
+        'ip',
         'created_by',
         'updated_by'
     ];
